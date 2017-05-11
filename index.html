@@ -31,9 +31,11 @@ jQuery(document).ready(function() {
 		console.log(cookieCurrency);
 		console.log(Cookies.get("currency"));
 
-		$.getJSON("https://api.fixer.io/latest?base=" + cookieCurrency, function(data) {
+		$.getJSON("http://api.fixer.io/latest?base=" + cookieCurrency, function(data) {
 
 			var rates = data.rates;
+
+			$("#webTicker").html("");
 
 			for(var key in rates) {
 				var value = rates[key];
@@ -83,14 +85,18 @@ jQuery(document).ready(function() {
 	});
 
 	font.change(function() {
+		$("#webTicker").webTicker('stop');
 		$('#webTicker').css("font-family", "");
 		$('#webTicker').css("font-family", $(this).val());
+		$("#webTicker").webTicker('cont');
 
 		Cookies.set("fontFamily", $(this).val());
 	});
 
 	size.change(function() {
+		$("#webTicker").webTicker('stop');
 		$('#webTicker').css("font-size", $(this).val() + "px");
+		$("#webTicker").webTicker('cont');
 
 		Cookies.set("fontSize", $(this).val() + "px");
 	});
@@ -106,8 +112,10 @@ jQuery(document).ready(function() {
 			CodeGeneration();
 		},
 		onChange: function (hsb, hex, rgb) {
+			$("#webTicker").webTicker('stop');
 			$('#colorSelector1 div').css('backgroundColor', '#' + hex);
 			$('#webTicker').css('backgroundColor', '#' + hex);
+			$("#webTicker").webTicker('cont');
 
 			Cookies.set("background", '#' + hex);
 		}
@@ -125,8 +133,10 @@ jQuery(document).ready(function() {
 			return false;
 		},
 		onChange: function (hsb, hex, rgb) {
+			$("#webTicker").webTicker('stop');
 			$('#colorSelector2 div').css('backgroundColor', '#' + hex);
 			$('.key').css('color', '#' + hex);
+			$("#webTicker").webTicker('cont');
 
 			Cookies.set("colorKey", '#' + hex);
 		}
@@ -144,8 +154,10 @@ jQuery(document).ready(function() {
 			return false;
 		},
 		onChange: function (hsb, hex, rgb) {
+			$("#webTicker").webTicker('stop');
 			$('#colorSelector3 div').css('backgroundColor', '#' + hex);
 			$('.val').css('color', '#' + hex);
+			$("#webTicker").webTicker('cont');
 
 			Cookies.set("colorVal", '#' + hex);
 		}
@@ -178,7 +190,6 @@ jQuery(document).ready(function() {
 				          <option value="AUD">AUD</option>
 				          <option value="CAD">CAD</option>
 				          <option value="GBP">GBP</option>
-				          <option value="PLN">PLN</option>
 				        </select>
 				      </div>
 				    </td>
