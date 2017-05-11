@@ -74,6 +74,10 @@ jQuery(document).ready(function() {
 			$('#webTicker').css("backgroundColor", cookieBackground);
 			$('.key').css('color', cookieColorKey);
 			$('.val').css('color', cookieColorVal);
+			
+			$('#background-box').css("backgroundColor", cookieBackground);
+			$('#color-box1').css('backgroundColor', cookieColorKey);
+			$('#color-box2').css('backgroundColor', cookieColorVal);
 
 			$('#currencySelector').val(cookieCurrency);
 			$('#fontSelector').val(cookieFont);
@@ -207,7 +211,7 @@ jQuery(document).ready(function() {
 				          <option value="NZD">NZD</option>
 				          <option value="AUD">AUD</option>
 				          <option value="CAD">CAD</option>
-				          <option value="GBP">GBP</option>	
+				          <option value="GBP">GBP</option>
 				          <option value="PLN">PLN</option>
 				        </select>
 				      </div>
@@ -239,21 +243,21 @@ jQuery(document).ready(function() {
 			    <tr>
 			      <td>Background:</td>
 			      <td>
-			        <div class="colorSelector" id="colorSelector1"><div style="background-color: #ffffff"></div></div>
+			        <div class="colorSelector" id="colorSelector1"><div id="background-box" style="background-color: #ffffff"></div></div>
 			      </td>
 			    </tr>
 			    
 			    <tr>
 			      <td>Text color:</td>
 			      <td>
-			        <div class="colorSelector" id="colorSelector2"><div style="background-color: #ff0000"></div></div>
+			        <div class="colorSelector" id="colorSelector2"><div id="color-box1" style="background-color: #ff0000"></div></div>
 			      </td>
 			    </tr>
 			    
 			    <tr>
 			      <td>Text color2:</td>
 			      <td>
-			        <div class="colorSelector" id="colorSelector3"><div style="background-color: #ff0000"></div></div>
+			        <div class="colorSelector" id="colorSelector3"><div id="color-box2" style="background-color: #ff0000"></div></div>
 			      </td>
 			    </tr>
 			    
