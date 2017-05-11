@@ -20,6 +20,16 @@
 <script type="text/javascript">
 jQuery(document).ready(function() {
 
+	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
 	function load() {
 
 		var cookieCurrency = (Cookies.get("currency") != null) ? Cookies.get("currency") : "USD";
@@ -30,10 +40,23 @@ jQuery(document).ready(function() {
 		var cookieColorVal = (Cookies.get("colorVal") != null) ? Cookies.get("colorVal") : "#52697e";
 		var cookieHeight = (Cookies.get("height") != null) ? Cookies.get("height") : "70";
 
-		console.log(cookieCurrency);
-		console.log(Cookies.get("currency"));
+		var paramCurrency = (getParameterByName('currency') != null) ? getParameterByName('currency') : cookieCurrency;
+		var paramFont = (getParameterByName('fontFamily') != null) ? getParameterByName('fontFamily') : cookieFont;
+		var paramFontSize = (getParameterByName('fontSize') != null) ? getParameterByName('fontSize') : cookieFontSize;
+		var paramBackground = (getParameterByName('background') != null) ? getParameterByName('background') : cookieBackground;
+		var paramColorKey = (getParameterByName('colorKey') != null) ? getParameterByName('colorKey') : cookieColorKey;
+		var paramColorVal = (getParameterByName('colorVal') != null) ? getParameterByName('colorVal') : cookieColorVal;
+		var paramHeight = (getParameterByName('height') != null) ? getParameterByName('height') : cookieHeight;
 
-		$.getJSON("https://api.fixer.io/latest?base=" + cookieCurrency, function(data) {
+		console.log(paramCurrency);
+		console.log(paramFont);
+		console.log(paramFontSize);
+		console.log(paramBackground);
+		console.log(paramColorKey);
+		console.log(paramColorVal);
+		console.log(paramHeight);
+
+		$.getJSON("https://api.fixer.io/latest?base=" + paramCurrency, function(data) {
 
 			var rates = data.rates;
 
@@ -48,7 +71,7 @@ jQuery(document).ready(function() {
 			}
 
 		 	$('#webTicker').webTicker({
-			    height: cookieHeight + 'px', 
+			    height: paramHeight + 'px', 
 			    duplicate:true, 
 			    rssfrequency:0, 
 			    startEmpty:false, 
@@ -70,24 +93,24 @@ jQuery(document).ready(function() {
 			});*/
 
 			$("#webTicker").webTicker('stop');
-			$('#webTicker').css("font-family", cookieFont);
-			$('#webTicker').css("font-size", cookieFontSize + "px");
+			$('#webTicker').css("font-family", paramFont);
+			$('#webTicker').css("font-size", paramFontSize + "px");
 
-			if (cookieBackground != null) {
-				$('#webTicker').css("backgroundColor", cookieBackground);
-				$('#background-box').css("backgroundColor", cookieBackground);
+			if (paramBackground != null) {
+				$('#webTicker').css("backgroundColor", paramBackground);
+				$('#background-box').css("backgroundColor", paramBackground);
 			}
 
-			$('.key').css('color', cookieColorKey);
-			$('.val').css('color', cookieColorVal);
+			$('.key').css('color', paramColorKey);
+			$('.val').css('color', paramColorVal);
 
-			$('#color-box1').css('backgroundColor', cookieColorKey);
+			$('#color-box1').css('backgroundColor', paramColorKey);
 			$('#color-box2').css('backgroundColor', cookieColorVal);
 
-			$('#currencySelector').val(cookieCurrency);
-			$('#fontSelector').val(cookieFont);
-			$('#sizeSelector').val(cookieFontSize);
-			$('#height-box').val(cookieHeight);
+			$('#currencySelector').val(paramCurrency);
+			$('#fontSelector').val(paramFont);
+			$('#sizeSelector').val(paramFontSize);
+			$('#height-box').val(paramHeight);
 			$("#webTicker").webTicker('cont');
 		});
 	}
@@ -217,11 +240,11 @@ jQuery(document).ready(function() {
 
 </head>
     <body>
+
+		<div class="container">
     	
         <ul id="webTicker">
 		</ul>
-
-		<div class="container">
 			<table cellpadding="0" cellspacing="1" class="std-table table" style="width: 450px;">
 			  <tbody>
 			  	<tr>
