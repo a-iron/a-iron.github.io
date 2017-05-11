@@ -1,0 +1,40 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+	font-family: 'Open Sans', sans-serif;
+}
+
+ul li {
+	line-height: 24px;
+}
+
+.currency-flag {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.key {
+	vertical-align: middle;
+}
+
+.val {
+	vertical-align: middle;
+}
+
+.colorSelector {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: url(select.png);
+}
+
+.colorSelector div {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 30px;
+    height: 30px;
+    background: url(select.png) center;
+}
