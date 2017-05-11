@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 		var cookieCurrency = (Cookies.get("currency") != null) ? Cookies.get("currency") : "USD";
 		var cookieFont = (Cookies.get("fontFamily") != null) ? Cookies.get("fontFamily") : "Open Sans";
 		var cookieFontSize = (Cookies.get("fontSize") != null) ? Cookies.get("fontSize") : "10";
-		var cookieBackground = (Cookies.get("background") != null) ? Cookies.get("background") : "transparent";
+		var cookieBackground = (Cookies.get("background") != null) ? Cookies.get("background") : null;
 		var cookieColorKey = (Cookies.get("colorKey") != null) ? Cookies.get("colorKey") : "#52697e";
 		var cookieColorVal = (Cookies.get("colorVal") != null) ? Cookies.get("colorVal") : "#52697e";
 		var cookieHeight = (Cookies.get("height") != null) ? Cookies.get("height") : "70";
@@ -72,11 +72,15 @@ jQuery(document).ready(function() {
 			$("#webTicker").webTicker('stop');
 			$('#webTicker').css("font-family", cookieFont);
 			$('#webTicker').css("font-size", cookieFontSize + "px");
-			$('#webTicker').css("backgroundColor", cookieBackground);
+
+			if (cookieBackground != null) {
+				$('#webTicker').css("backgroundColor", cookieBackground);
+				$('#background-box').css("backgroundColor", cookieBackground);
+			}
+
 			$('.key').css('color', cookieColorKey);
 			$('.val').css('color', cookieColorVal);
 
-			$('#background-box').css("backgroundColor", cookieBackground);
 			$('#color-box1').css('backgroundColor', cookieColorKey);
 			$('#color-box2').css('backgroundColor', cookieColorVal);
 
