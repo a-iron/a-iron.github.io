@@ -46,16 +46,6 @@ jQuery(document).ready(function() {
 	            $('<li>', {html: text}).appendTo("#webTicker");
 			}
 
-			$('#webTicker').css("font-family", cookieFont);
-			$('#webTicker').css("font-size", cookieFontSize + "px");
-			$('#webTicker').css("backgroundColor", cookieBackground);
-			$('.key').css('color', cookieColorKey);
-			$('.val').css('color', cookieColorVal);
-
-			$('#currencySelector').val(cookieCurrency);
-			$('#fontSelector').val(cookieFont);
-			$('#sizeSelector').val(cookieFontSize);
-
 		 	$('#webTicker').webTicker({
 			    height:'60px', 
 			    duplicate:true, 
@@ -77,6 +67,18 @@ jQuery(document).ready(function() {
 				//true or false - should the marquee be duplicated to show an effect of continues flow
 				duplicated: true
 			});*/
+
+			$("#webTicker").webTicker('stop');
+			$('#webTicker').css("font-family", cookieFont);
+			$('#webTicker').css("font-size", cookieFontSize + "px");
+			$('#webTicker').css("backgroundColor", cookieBackground);
+			$('.key').css('color', cookieColorKey);
+			$('.val').css('color', cookieColorVal);
+
+			$('#currencySelector').val(cookieCurrency);
+			$('#fontSelector').val(cookieFont);
+			$('#sizeSelector').val(cookieFontSize);
+			$("#webTicker").webTicker('cont');
 		});
 	}
 
