@@ -31,7 +31,7 @@ jQuery(document).ready(function() {
 		console.log(cookieCurrency);
 		console.log(Cookies.get("currency"));
 
-		$.getJSON("http://api.fixer.io/latest?base=" + cookieCurrency, function(data) {
+		$.getJSON("https://api.fixer.io/latest?base=" + cookieCurrency, function(data) {
 
 			var rates = data.rates;
 
